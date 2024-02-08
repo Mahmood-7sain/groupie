@@ -1,0 +1,42 @@
+html{
+    background-color: #404444
+}
+
+
+.container{
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+#home{
+    display: inline-block;
+    color: black;
+    font-family: 'Pixelify Sans', cursive;
+    width: 250px;
+    background-color: white;
+    text-align: center;
+    padding: 15px 0px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+
+nav{
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+#art{
+    color: white;
+}
+
+#map{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+h1{
+    color: white;
+    font-size: 5rem;
+}

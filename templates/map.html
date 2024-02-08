@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Map</title>
+    <link rel="stylesheet" href="styles/mapStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&family=Young+Serif&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtkpdPU9iIEkWGpNQ2I1nC7Pw8FPBNzsQ&callback=initMap" 
+    async defer></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        <h1 style="font-family: 'Pixelify Sans', cursive;">Artist Map</h1>
+        <nav>
+            <a id="art">Return To Artist?</a>
+            <span id="total" style="color: white;"></span>
+        </nav>
+        <div id="map"></div>
+        <a href="/" id="home">Return Home</a>
+        <script>
+function initMap() {
+    // Extract the artist ID from the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var artistId = urlParams.get('id');
+
+    // Create a new Google Map
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 2,
+        center: { lat: 0, lng: 0 }
+    });
+
+    document.getElementById('art').setAttribute('href', '/viewartist?id=' + artistId)
+
+    // Make an HTTP request to server to get artist data
+    fetch('/showmap?id=' + artistId)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Received artist data:", data);
+            document.getElementById('total').innerHTML = "Total Locations: " + data.LocCoords.length;
+
+            // Loop through the received location coordinates and add markers to the map
+            console.log("Adding markers:", data.LocCoords);
+            data.LocCoords.forEach(coords => {
+                var marker = new google.maps.Marker({
+                    position: { lat: coords.Lat, lng: coords.Lng },
+                    map: map,
+                    title: data.Loc // You can customize the marker title as needed
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<div><strong>' + coords.Loc + '</strong></div>'
+                });
+
+                // Add a listener to open the infowindow when the marker is clicked
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+
+                // Open the infowindow by default
+                infowindow.open(map, marker);
+            });
+            connectMarkersWithLines(map, data.LocCoords);
+        })
+        .catch(error => console.error('Error fetching artist data:', error));
+}
+
+
+function connectMarkersWithLines(map, locCoords) {
+    var lineCoordinates = locCoords.map(coords => new google.maps.LatLng(coords.Lat, coords.Lng));
+
+    // Create a Polyline to connect the markers
+    var polyline = new google.maps.Polyline({
+        path: lineCoordinates,
+        geodesic: true,
+        strokeColor: '#FF0000', // Line color
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+
+    // Set the Polyline on the map
+    polyline.setMap(map);
+}
+        </script>
+    </div>
+</body>
+</html>

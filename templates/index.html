@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&family=Young+Serif&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="scripts/search.js"></script>
+  <script>
+  $( function() {
+    $( "#slider-rangeC" ).slider({
+      range: true,
+      min: 1950,
+      max: 2023,
+      values: [ 1950, 2023 ],
+      slide: function( event, ui ) {
+        $( "#CreateDate" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        $("#minC").val(ui.values[0]);
+        $("#maxC").val(ui.values[1]);
+      }
+    });
+    $( "#CreateDate" ).val($( "#slider-rangeC" ).slider( "values", 0 ) +
+      " - " + $( "#slider-rangeC" ).slider( "values", 1 ) );
+      $("#minC").val(ui.values[0]);
+    $("#maxC").val(ui.values[1]);
+  } );
+
+  $( function() {
+    $( "#slider-rangeA" ).slider({
+      range: true,
+      min: 1950,
+      max: 2023,
+      values: [ 1950, 2023 ],
+      slide: function( event, ui ) {
+        $( "#AlbumDate" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        $("#minA").val(ui.values[0]);
+        $("#maxA").val(ui.values[1]);
+      }
+    });
+    $( "#AlbumDate" ).val($( "#slider-rangeA" ).slider( "values", 0 ) +
+      " - " + $( "#slider-rangeA" ).slider( "values", 1 ) );
+      $("#minA").val(ui.values[0]);
+    $("#maxA").val(ui.values[1]);
+  } );
+  </script>
+</head>
+<body>
+    <a href="/"><h1>GROUPIE TRACKER</h1></a>
+    <br>
+    <div style="max-width: 1024px; margin: 0 auto;" class="nav">
+      <input type="text" id="searchInput" placeholder="Search..." class="searchBar" name="query" style="height: 30px;" onclick="hide()" maxlength="100">
+    <button onclick="show()" id="butn" style="border-radius: 5px;"> Show Filters</button>
+  </div>
+  <div style="max-width: 1024px; margin: 0 auto;">
+  <div id="searchResults" style="display: none;"></div>
+</div>
+    <header id="fil" style="display: none;">
+        <div class="form">
+        <form action="/" method="POST">
+          <div class="filters" style="color:white; border:1px solid white">
+            <div class="cd" style="text-align: center;">
+            <span>
+              Creation Date: <br>
+                <!-- <label for="CreateDate">Creation Date:</label><br> -->
+                <input type="text" id="CreateDate" readonly style="border:0; color:rgb(53, 52, 52); font-weight:bold; border-radius: 5px; width: 120px; text-align: center;">
+                <input type="hidden" id="minC" value="1950" name="minC">
+                <input type="hidden" id="maxC" value="2023" name="maxC">
+              </span>
+            <dir id="slider-rangeC" style="width: 50%; margin-left: 8px;"></dir>
+          </div>
+          <div class="ad" style="text-align: center;">
+            <span>
+                <label for="AlbumDate">First Album Date:</label><br>
+                <input type="text" id="AlbumDate" readonly style="border:0; color:rgb(53, 52, 52); font-weight:bold; border-radius: 5px; width: 120px; text-align: center;">
+                <input type="hidden" id="minA" value="1950" name="minA">
+                <input type="hidden" id="maxA" value="2023" name="maxA">
+              </span>
+            <dir id="slider-rangeA" style="width: 50%; margin-left: 8px;"></dir>
+          </div>
+          <div class="membersNum" style="text-align: center;">
+            Members: <br>
+            1:<input type="checkbox" name="mem[]" value="1">
+            2:<input type="checkbox" name="mem[]" value="2">
+            3:<input type="checkbox" name="mem[]" value="3">
+            4:<input type="checkbox" name="mem[]" value="4"><br>
+            5:<input type="checkbox" name="mem[]" value="5">
+            6:<input type="checkbox" name="mem[]" value="6">
+            7:<input type="checkbox" name="mem[]" value="7">
+            8:<input type="checkbox" name="mem[]" value="8">
+          </div>
+        <div class="loca" style="text-align: center;">
+        <label class="filter-title" for="location-filter">Concert Locatiion:</label><br>
+                <input type="text" class="filter-item" id="location-filter" name="location-filter" placeholder="Location" list="location-name">
+                <datalist style="text-transform: uppercase;" id="location-name">
+                  <option value=aalborg-denmark>aalborg-denmark</option><option value=aarhus-denmark>aarhus-denmark</option><option value=aberdeen-uk>aberdeen-uk</option><option value=abu_dhabi-united_arab_emirates>abu_dhabi-united_arab_emirates</option><option value=alabama-usa>alabama-usa</option>
+                  <option value=amityville-usa>amityville-usa</option>
+                  <option value=amsterdam-netherlands>amsterdam-netherlands</option>
+                  <option value=anaheim-usa>anaheim-usa</option>
+                  <option value=antwerp-belgium>antwerp-belgium</option>
+                  <option value=arizona-usa>arizona-usa</option><option value=arras-france>arras-france</option><option value=athens-greece>athens-greece</option><option value=atlanta-usa>atlanta-usa</option><option value=auckland-new_zealand>auckland-new_zealand</option>
+                  <option value=bangkok-thailand>bangkok-thailand</option>
+                  <option value=barcelona-spain>barcelona-spain</option><option value=belo_horizonte-brazil>belo_horizonte-brazil</option><option value=berlin-germany>berlin-germany</option><option value=berwyn-usa>berwyn-usa</option>
+                  <option value=bilbao-spain>bilbao-spain</option>
+                  <option value=birmingham-uk>birmingham-uk</option>
+                  <option value=bogota-colombia>bogota-colombia</option>
+                  <option value=boston-usa>boston-usa</option>
+                  <option value=boulogne_billancourt-france>boulogne_billancourt-france</option>
+                  <option value=brasilia-brazil>brasilia-brazil</option>
+                  <option value=bratislava-slovakia>bratislava-slovakia</option>
+                  <option value=brisbane-australia>brisbane-australia</option>
+                  <option value=brixton-uk>brixton-uk</option>
+                  <option value=brooklyn-usa>brooklyn-usa</option>
+                  <option value=budapest-hungary>budapest-hungary</option>
+                  <option value=buenos_aires-argentina>buenos_aires-argentina</option>
+                  <option value=burriana-spain>burriana-spain</option>
+                  <option value=burswood-australia>burswood-australia</option>
+                  <option value=california-usa>california-usa</option>
+                  <option value=canton-usa>canton-usa</option>
+                  <option value=cardiff-uk>cardiff-uk</option>
+                  <option value=changzhou-china>changzhou-china</option>
+                  <option value=charlotte-usa>charlotte-usa</option>
+                  <option value=chicago-usa>chicago-usa</option>
+                  <option value=cincinnati-usa>cincinnati-usa</option>
+                  <option value=cleveland-usa>cleveland-usa</option>
+                  <option value=colorado-usa>colorado-usa</option>
+                  <option value=columbia-usa>columbia-usa</option>
+                  <option value=copenhagen-denmark>copenhagen-denmark</option>
+                  <option value=cuxhaven-germany>cuxhaven-germany</option>
+                  <option value=dallas-usa>dallas-usa</option>
+                  <option value=del_mar-usa>del_mar-usa</option>
+                  <option value=detroit-usa>detroit-usa</option>
+                  <option value=doha-qatar>doha-qatar</option>
+                  <option value=dubai-united_arab_emirates>dubai-united_arab_emirates</option>
+                  <option value=dublin-ireland>dublin-ireland</option>
+                  <option value=dunedin-new_zealand>dunedin-new_zealand</option>
+                  <option value=dusseldorf-germany>dusseldorf-germany</option>
+                  <option value=eindhoven-netherlands>eindhoven-netherlands</option>
+                  <option value=florence-italy>florence-italy</option>
+                  <option value=florida-usa>florida-usa</option>
+                  <option value=frankfurt-germany>frankfurt-germany</option>
+                  <option value=frauenfeld-switzerland>frauenfeld-switzerland</option>
+                  <option value=freyming_merlebach-france>freyming_merlebach-france</option>
+                  <option value=gdynia-poland>gdynia-poland</option>
+                  <option value=georgia-usa>georgia-usa</option>
+                  <option value=glasgow-uk>glasgow-uk</option>
+                  <option value=gothenburg-sweden>gothenburg-sweden</option>
+                  <option value=grand_rapids-usa>grand_rapids-usa</option>
+                  <option value=groningen-netherlands>groningen-netherlands</option>
+                  <option value=hamburg-germany>hamburg-germany</option>
+                  <option value=hershey-usa>hershey-usa</option>
+                  <option value=hong_kong-china>hong_kong-china</option>
+                  <option value=houston-usa>houston-usa</option>
+                  <option value=huizhou-china>huizhou-china</option>
+                  <option value=illinois-usa>illinois-usa</option>
+                  <option value=imola-italy>imola-italy</option>
+                  <option value=indianapolis-usa>indianapolis-usa</option>
+                  <option value=inglewood-usa>inglewood-usa</option>
+                  <option value=jakarta-indonesia>jakarta-indonesia</option>
+                  <option value=kansas_city-usa>kansas_city-usa</option>
+                  <option value=klagenfurt-austria>klagenfurt-austria</option>
+                  <option value=krakow-poland>krakow-poland</option>
+                  <option value=la_plata-argentina>la_plata-argentina</option>
+                  <option value=landgraaf-netherlands>landgraaf-netherlands</option>
+                  <option value=las_vegas-usa>las_vegas-usa</option>
+                  <option value=lausanne-switzerland>lausanne-switzerland</option>
+                  <option value=leipzig-germany>leipzig-germany</option>
+                  <option value=lima-peru>lima-peru</option>
+                  <option value=lisbon-portugal>lisbon-portugal</option>
+                  <option value=london-uk>london-uk</option>
+                  <option value=los_angeles-usa>los_angeles-usa</option>
+                  <option value=lyon-france>lyon-france</option>
+                  <option value=madison-usa>madison-usa</option>
+                  <option value=madrid-spain>madrid-spain</option>
+                  <option value=maine-usa>maine-usa</option>
+                  <option value=manchester-uk>manchester-uk</option>
+                  <option value=manila-philippines>manila-philippines</option>
+                  <option value=mannheim-germany>mannheim-germany</option>
+                  <option value=massachusetts-usa>massachusetts-usa</option>
+                  <option value=melbourne-australia>melbourne-australia</option>
+                  <option value=merkers-germany>merkers-germany</option>
+                  <option value=mexico_city-mexico>mexico_city-mexico</option>
+                  <option value=michigan-usa>michigan-usa</option>
+                  <option value=milan-italy>milan-italy</option>
+                  <option value=minneapolis-usa>minneapolis-usa</option>
+                  <option value=minnesota-usa>minnesota-usa</option>
+                  <option value=minsk-belarus>minsk-belarus</option>
+                  <option value=missouri-usa>missouri-usa</option>
+                  <option value=monchengladbach-germany>monchengladbach-germany</option>
+                  <option value=monterrey-mexico>monterrey-mexico</option>
+                  <option value=montreal-canada>montreal-canada</option>
+                  <option value=montreal-usa>montreal-usa</option>
+                  <option value=mumbai-india>mumbai-india</option>
+                  <option value=munich-germany>munich-germany</option>
+                  <option value=nagoya-japan>nagoya-japan</option>
+                  <option value=napoca-romania>napoca-romania</option>
+                  <option value=nevada-usa>nevada-usa</option>
+                  <option value=new_hampshire-usa>new_hampshire-usa</option>
+                  <option value=new_orleans-usa>new_orleans-usa</option>
+                  <option value=new_south_wales-australia>new_south_wales-australia</option>
+                  <option value=new_york-usa>new_york-usa</option>
+                  <option value=newark-usa>newark-usa</option>
+                  <option value=nickelsdorf-austria>nickelsdorf-austria</option>
+                  <option value=nimes-france>nimes-france</option>
+                  <option value=north_carolina-usa>north_carolina-usa</option>
+                  <option value=noumea-new_caledonia>noumea-new_caledonia</option>
+                  <option value=oakland-usa>oakland-usa</option>
+                  <option value=oklahoma-usa>oklahoma-usa</option>
+                  <option value=omaha-usa>omaha-usa</option>
+                  <option value=oregon-usa>oregon-usa</option>
+                  <option value=osaka-japan>osaka-japan</option>
+                  <option value=oslo-norway>oslo-norway</option>
+                  <option value=ostrava-czechia>ostrava-czechia</option>
+                  <option value=oulu-finland>oulu-finland</option>
+                  <option value=pagney_derriere_barine-france>pagney_derriere_barine-france</option>
+                  <option value=papeete-french_polynesia>papeete-french_polynesia</option>
+                  <option value=paris-france>paris-france</option>
+                  <option value=pennsylvania-usa>pennsylvania-usa</option>
+                  <option value=penrose-new_zealand>penrose-new_zealand</option>
+                  <option value=philadelphia-usa>philadelphia-usa</option>
+                  <option value=pico_rivera-usa>pico_rivera-usa</option>
+                  <option value=pittsburgh-usa>pittsburgh-usa</option>
+                  <option value=playa_del_carmen-mexico>playa_del_carmen-mexico</option>
+                  <option value=porto_alegre-brazil>porto_alegre-brazil</option>
+                  <option value=prague-czechia>prague-czechia</option>
+                  <option value=quebec-canada>quebec-canada</option>
+                  <option value=queensland-australia>queensland-australia</option>
+                  <option value=recife-brazil>recife-brazil</option>
+                  <option value=rio_de_janeiro-brazil>rio_de_janeiro-brazil</option>
+                  <option value=riyadh-saudi_arabia>riyadh-saudi_arabia</option>
+                  <option value=rosemont-usa>rosemont-usa</option>
+                  <option value=rotselaar-belgium>rotselaar-belgium</option>
+                  <option value=saitama-japan>saitama-japan</option>
+                  <option value=salem-germany>salem-germany</option>
+                  <option value=san_francisco-usa>san_francisco-usa</option>
+                  <option value=san_isidro-argentina>san_isidro-argentina</option>
+                  <option value=san_jose-costa_rica>san_jose-costa_rica</option>
+                  <option value=santiago-chile>santiago-chile</option>
+                  <option value=sanya-china>sanya-china</option>
+                  <option value=sao_paulo-brazil>sao_paulo-brazil</option>
+                  <option value=scheessel-germany>scheessel-germany</option>
+                  <option value=seattle-usa>seattle-usa</option>
+                  <option value=seoul-south_korea>seoul-south_korea</option>
+                  <option value=seville-spain>seville-spain</option>
+                  <option value=sion-switzerland>sion-switzerland</option>
+                  <option value=skanderborg-denmark>skanderborg-denmark</option>
+                  <option value=sochaux-france>sochaux-france</option>
+                  <option value=south_carolina-usa>south_carolina-usa</option>
+                  <option value=st_gallen-switzerland>st_gallen-switzerland</option>
+                  <option value=st_louis-usa>st_louis-usa</option>
+                  <option value=stockholm-sweden>stockholm-sweden</option>
+                  <option value=sydney-australia>sydney-australia</option>
+                  <option value=taipei-taiwan>taipei-taiwan</option>
+                  <option value=texas-usa>texas-usa</option>
+                  <option value=toronto-canada>toronto-canada</option>
+                  <option value=toronto-usa>toronto-usa</option>
+                  <option value=turku-finland>turku-finland</option>
+                  <option value=uniondale-usa>uniondale-usa</option>
+                  <option value=utah-usa>utah-usa</option><option value=vancouver-canada>vancouver-canada</option><option value=victoria-australia>victoria-australia</option><option value=vienna-austria>vienna-austria</option><option value=warsaw-poland>warsaw-poland</option><option value=washington-usa>washington-usa</option><option value=wellington-new_zealand>wellington-new_zealand</option>
+                  <option value=werchter-belgium>werchter-belgium</option><option value=west_melbourne-australia>west_melbourne-australia</option><option value=westcliff_on_sea-uk>westcliff_on_sea-uk</option><option value=willemstad-netherlands_antilles>willemstad-netherlands_antilles</option><option value=windsor-canada>windsor-canada</option>
+                  <option value=yogyakarta-indonesia>yogyakarta-indonesia</option><option value=zaragoza-spain>zaragoza-spain</option><option value=zurich-switzerland>zurich-switzerland</option>
+                </datalist>
+              </div>
+          </div>
+          <input type="submit" value="Filter" style="font-size: 18px; background-color: white; color:rgb(53, 52, 52); border-radius: 5px; font-weight:bold; font-family: Arial, Helvetica, sans-serif;">
+        </form>
+    </div>
+    </header>
+    <div class="container">
+      {{if .Empty}}
+      <h2 class="err">Opps! No Artists Found</h2>
+      {{else}}
+     {{range .Artists}}
+     <div class="artist">
+        <div class="image">
+        <a href="/viewartist?id={{.ID}}">
+            {{if eq .ID 21}}
+            <img src="https://groupietrackers.herokuapp.com/api/images/scorpions.jpeg" alt="Picture">
+            {{else}}
+            <img src="{{.Image}}" alt="Picture">
+            {{end}}
+            <h3>{{.Name}}</h3>
+        </a>
+    </div>
+    <hr>
+     </div>
+     {{end}}
+     {{end}}
+    </div>
+</body>
+
+
+<script>
+
+  function show(){
+    if(document.getElementById("fil").style.display == "block"){
+      document.getElementById("fil").style.display = "none";
+      document.getElementById("butn").innerHTML = "Show Filters";
+    } else {
+      document.getElementById("fil").style.display = "block";
+      document.getElementById("butn").innerHTML = "Hide Filters";
+    }
+  }
+
+  function hide(){
+    if(document.getElementById("fil").style.display == "block"){
+      document.getElementById("fil").style.display = "none";
+      document.getElementById("butn").innerHTML = "Show Filters";
+    }
+  }
+</script>
+</html>

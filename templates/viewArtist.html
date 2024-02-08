@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist</title>
+    <link rel="stylesheet" href="/styles/viewStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&family=Young+Serif&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="det">
+        <h1>{{.Details.Name}}</h1>
+        <img src="{{.Details.Image}}" alt="Picture" border="1px"><br>
+        <span>Creation Date: {{.Details.CreationDate}}</span><br>
+        <span>First Album: {{.Details.FirstAlbum}}</span><br>
+        <hr style="max-width: 800px;">
+    </div>
+<div class="data">
+    <div class="members">
+        <span style="font-size: 1.5rem;text-decoration: underline; margin-bottom: 10px;">Band Members:</span>
+        <div class="mems">
+        {{range .Details.Members}}
+        <div class="mem">{{.}}</div>
+        {{end}}
+    </div>
+</div>
+
+<div class="sec">
+    <span style="font-size: 1.5rem;text-decoration: underline;margin-bottom: 10px">Concert Locations and Dates:</span>
+<div class="dl">
+        {{range $location, $dates := .Rel.DatesLocations}}
+        <span style="font-size: 1.1rem; font-weight: 700;">{{$location}}</span>
+        <div class="locDat">
+                {{range $index, $date := $dates}}
+                <div class="dates">{{$date}}</div>
+                {{end}}
+        </div>
+            {{end}}
+</div>
+</div>
+
+<!-- <div class="Onlydates">
+        <span style="font-size: 1.5rem; text-decoration: underline;margin-bottom: 10px">All Concert Dates:</span><br>
+        <div class="dts">
+            {{range $index, $date := .Date.Dates}}
+            <div class="d">{{$date}}</div>
+            {{end}}
+        </div>
+    </div>
+
+
+    <div class="loc">
+        <span style="font-size: 1.5rem; text-decoration: underline;margin-bottom: 10px">All Locations:</span><br>
+        <div class="locs">
+        {{range $index,$location := .Loc.Locations}}
+            <div class="l">{{$location}}</div>
+            {{end}}
+    </div>
+    </div> -->
+    <div class="links">
+    <a href="/">Return Home</a>
+    <a href="/map?id={{.Details.ID}}">Show On Map</a>
+</div>
+</div>
+    </div>
+</body>
+</html>

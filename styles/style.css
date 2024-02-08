@@ -1,0 +1,162 @@
+html{
+    background-color: #404444
+}
+
+.container{
+    max-width: 1024px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+header{
+    margin-top: 10px;
+}
+
+.searchBar{
+    width: 60%;
+    border-radius: 8px;
+}
+
+.image{
+    height:330px;
+}
+
+.artist{
+    margin-top: 10px;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+h1,h2{
+    font-size: 5rem;
+   font-family: 'Pixelify Sans', cursive;
+   color: white;
+}
+
+h3{
+    font-family: 'Pixelify Sans', cursive;
+   color: white;
+   font-size: 1.5rem;
+}
+
+img{
+    border-radius: 50%;
+    
+}
+
+img:hover{
+    border: 2px solid white;
+    box-shadow: 0px 8px 10px black;
+}
+.image{
+    width:100%;
+}
+
+/* body{
+    background-color: red;
+} */
+.result:hover{
+    background-color: lightgray;
+}
+
+.sr{
+    display: block;
+}
+h1{
+    text-align: center;
+    margin: 0 auto;
+    /* width: 200px; */
+
+}
+
+.err {
+    font-family:'Pixelify Sans', cursive;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 2.5rem;
+}
+
+a{
+    text-decoration: none;
+}
+.form {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+cd, ad {
+    text-align: center;
+}
+
+.filters {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+cd, ad, membersNum, loca {
+    width: 25%;
+}
+
+@media(max-width: 868px){
+    h1{
+        font-size: 3.5rem;
+    }
+    .artist{
+        width: 45%;
+    }
+
+    cd, ad, membersNum, loca {
+        width: 45%;
+    }
+}
+
+@media(max-width:500px){
+    .artist{
+        width: 100%;
+    }
+    h1{
+        font-size: 2rem;
+    }
+
+    cd, ad, membersNum, loca {
+        width: 90%;
+
+    }
+}
+
+#searchResults {
+    /* position: absolute; */
+    
+    width: 45%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    /* z-index: 9999; */
+    /* margin: 0 auto; */
+  }
+  
+  .result {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .result:last-child {
+    border-bottom: none;
+  }

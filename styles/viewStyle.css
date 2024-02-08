@@ -1,0 +1,208 @@
+html{
+    background-color: #404444
+}
+
+.container{
+    max-width:1024px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    text-align: center;
+}
+
+a{
+    display: inline-block;
+    color: black;
+    font-family: 'Pixelify Sans', cursive;
+    width: 40%;
+    background-color: white;
+    text-align: center;
+    padding: 15px 0px;
+    border-radius: 15px;
+    font-size: 25px;
+}
+.links{
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.det{
+    margin: 0 auto;
+    width: 800px;
+    color: white;
+    font-size: 2rem;
+}
+
+img{
+    border-radius: 50%;
+    width: 50%;
+    max-height: 800px;
+    margin-bottom: 15px;
+    box-shadow: 0px 8px 10px black;
+}
+
+.det h1{
+    font-family: 'Pixelify Sans', cursive;
+    font-size: 5rem;
+    margin-bottom: 3px;
+}
+
+
+.members{
+    color: black;
+    background-color: rgb(207, 200, 200);
+    padding-top: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.data{
+    margin: 0 auto;
+    width: 800px;
+}
+
+.mems{
+    /* max-width: 80%; */
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+    text-align: center;
+}
+
+.mem{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    /* background-color: red; */
+}
+
+
+
+.test{
+    background-color: blue;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.locDat{
+    margin: 5px auto;
+    display: flex;
+    flex-wrap: wrap;
+    width:50%;
+    justify-content: space-around;
+}
+
+.sec{
+    color: black;
+    background-color: rgb(207, 200, 200);
+    padding-top: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dates{
+    /* border-bottom: 1px solid black; */
+    width:100%;
+}
+
+.Onlydates{
+    color: black;
+    background-color: rgb(207, 200, 200);
+    padding-top: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.l{
+    width: 30%;
+    margin-top: 5px;
+}
+.d{
+    width:30%;
+    margin-top: 5px;
+}
+
+.loc{
+    color: black;
+    background-color: rgb(207, 200, 200);
+    padding-top: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.locs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+@media(max-width:800px){
+    .det{
+        width: 550px;
+    }
+    .l{
+        width: 45%;
+    }
+    .d{
+        width: 45%;
+    }
+    .data{
+        width: 550px;
+    }
+    .mem{
+        width: 45%;
+    }
+    
+}
+
+
+@media(max-width:500px){
+    .det{
+        width: 380px;
+    }
+    .data{
+        width: 380px;
+    }
+    .l{
+        width: 80%;
+    }
+    .d{
+        width: 80%;
+    }
+    .locs{
+        justify-content: space-around;
+    }
+    .dts{
+        justify-content: space-around;
+    }
+    .mem{
+        width: 80%;
+    }
+    .mems{
+        justify-content: space-around;
+    }
+}
