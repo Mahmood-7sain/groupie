@@ -1,7 +1,7 @@
 # Groupie
 
 ### Description
-Groupie is a project that consists of receiving an API and manipulating its data to create a site to display them with multiple functionalities like filtering, a search bar, and marking locations on a map.
+Groupie is a project that consists of receiving an API that includes artists data and manipulating the data to create a site to display them with multiple functionalities like filtering, a search bar, and marking locations on a map.
 - The project is created using Golang, HTML/CSS, javascript
 - Google's maps and geocoding API were used to implement the visual display of the locations.
 
